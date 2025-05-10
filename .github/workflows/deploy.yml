@@ -14,8 +14,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Docker to use Minikube's environment
-        run: |
-          minikube docker-env | ForEach-Object { if ($_ -match "^set ") { Invoke-Expression $_ } }
+      shell: powershell
+      run: |
+       & minikube -p minikube docker-env --shell powershell | Invoke-Expression
+
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
