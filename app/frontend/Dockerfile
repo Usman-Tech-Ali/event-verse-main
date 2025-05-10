@@ -4,14 +4,13 @@ FROM node:18 AS builder
 # Set working directory
 WORKDIR /app/frontend
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy correct path from the context root
+COPY app/frontend/package*.json ./
 
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the frontend code
-COPY . .
+# Then copy rest of the code
+COPY app/frontend/. ./
 
 # Build the React app for production
 RUN npm run build
