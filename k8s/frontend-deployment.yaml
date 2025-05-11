@@ -1,27 +1,27 @@
 apiVersion: apps/v1
-   kind: Deployment
-   metadata:
-     name: event-verse-frontend
-     namespace: event-verse
-   spec:
-     replicas: 2
-     selector:
-       matchLabels:
-         app: event-verse-frontend
-     template:
-       metadata:
-         labels:
-           app: event-verse-frontend
-       spec:
-         containers:
-         - name: event-verse-frontend
-           image: usmanali2005/event-verse-frontend:latest
-           ports:
-           - containerPort: 80
-           resources:
-             limits:
-               cpu: "500m"
-               memory: "512Mi"
-             requests:
-               cpu: "200m"
-               memory: "256Mi"
+kind: Deployment
+metadata:
+  name: event-verse-frontend
+  namespace: event-verse
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: event-verse-frontend
+  template:
+    metadata:
+      labels:
+        app: event-verse-frontend
+    spec:
+      containers:
+        - name: event-verse-frontend
+          image: usmanali2005/event-verse-frontend:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
