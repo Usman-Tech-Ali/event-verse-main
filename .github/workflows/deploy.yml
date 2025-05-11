@@ -28,8 +28,13 @@ jobs:
       - name: Debug Secrets
         shell: powershell
         run: |
-          Write-Output "Username: ${{ secrets.DOCKER_USERNAME }}"
+          $username = "${{ secrets.DOCKER_USERNAME }}"
+          $password = "${{ secrets.DOCKER_PASSWORD }}"
+          Write-Output "Resolved Username: $username"
           Write-Output "Password set: [REDACTED]"
+          if ([string]::IsNullOrEmpty($username) -or [string]::IsNullOrEmpty($password)) {
+            throw "One or more secrets are empty or not set"
+          }
 
       - name: Login to Docker Hub
         shell: powershell
