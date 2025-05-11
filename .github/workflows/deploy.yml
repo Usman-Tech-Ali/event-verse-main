@@ -33,7 +33,7 @@ jobs:
           Write-Output "Resolved Username: $username"
           Write-Output "Password set: [REDACTED]"
           if ([string]::IsNullOrEmpty($username) -or [string]::IsNullOrEmpty($password)) {
-            throw "One or more secrets are empty or not set"
+            throw "One or more secrets are empty or not set prese"
           }
 
       - name: Login to Docker Hub
