@@ -83,4 +83,3 @@ Event-Verse/
    Frontend
    cd app/frontend
    npm start
-   --done
