@@ -6,7 +6,7 @@ Event-Verse is a full-stack Event Management System designed to simplify the man
 
 ## 🚀 Features
 
-- 🔐 **Secure Authentication**: JWT-based login system for attendees, staff, and administrators.
+- 🔐 **Secure Authentication**: JWT-based login system for attendees, staff, and administrators.hehe
 - 📝 **Event Registration**: Users can explore, register, and manage their event participation.
 - ❤️ **Preferences Module**: Attendees can select their interests for tailored event suggestions.
 - 🔔 **Smart Reminders**: Email and in-app notifications for upcoming events and trailer releases.
