@@ -19,12 +19,17 @@ jobs:
           & minikube -p minikube docker-env --shell powershell | Invoke-Expression
           Write-Output "Docker environment set up"
 
-      - name: Debug Environment
+      - name: Verify Docker Environment
+        shell: powershell
+        run: |
+          docker --version
+          docker info --format '{{.ServerVersion}}'
+
+      - name: Debug Secrets
         shell: powershell
         run: |
           Write-Output "Username: ${{ secrets.DOCKER_USERNAME }}"
-          Write-Output "Password set: [REDACTED]"  # Avoid logging the actual password
-          docker --version
+          Write-Output "Password set: [REDACTED]"
 
       - name: Login to Docker Hub
         shell: powershell
