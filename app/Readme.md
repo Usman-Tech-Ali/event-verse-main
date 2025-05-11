@@ -12,7 +12,7 @@ Event-Verse is a full-stack Event Management System designed to simplify the man
 - 🔔 **Smart Reminders**: Email and in-app notifications for upcoming events and trailer releases.
 - 🗣 **Feedback System**: Post-event feedback submission with rating and comments.
 - 📊 **Admin Dashboard**: Manage users, create events, and view analytics.
-- 🌐 **Modern UI**: Responsive and interactive frontend with smooth transitions.
+- 🌐 **Modern UI**: Responsive and interactive frontend with smooth transitions.last
 
 ## 🛠 Tech Stack
 
