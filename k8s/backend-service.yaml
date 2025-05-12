@@ -4,9 +4,10 @@ metadata:
   name: event-verse-backend-service
   namespace: event-verse
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: event-verse-backend
   ports:
     - port: 5000
       targetPort: 5000
+  type: LoadBalancer

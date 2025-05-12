@@ -1,27 +1,29 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb
-  namespace: event-verse
+  name: mongo
+  labels:
+    app: mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongodb
+      app: mongo
   template:
     metadata:
       labels:
-        app: mongodb
+        app: mongo
     spec:
       containers:
-        - name: mongodb
+        - name: mongo
           image: mongo:6
           ports:
             - containerPort: 27017
-          resources:
-            limits:
-              cpu: "500m"
-              memory: "512Mi"
-            requests:
-              cpu: "200m"
-              memory: "256Mi"
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+      volumes:
+        # For persistence in Minikube demo you can use emptyDir
+        - name: mongo-data
+          emptyDir: {}

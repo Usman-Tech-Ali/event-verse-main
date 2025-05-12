@@ -5,12 +5,9 @@ import PDFDocument from "pdfkit";
 import Feedback from "../models/Feedback.js";
 import Ticket from "../models/Ticket.js";
 import dotenv from "dotenv";
-dotenv.config();
-require("dotenv").config();
+dotenv.config(); // loads variables from .env file
 
-const STRIPE_API_KEY = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-//added commit
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const getTrendingEvents = async (req, res) => {
   try {
@@ -215,7 +212,7 @@ export const bookTickets = async (req, res) => {
     //await event.save();
 
     // Create a payment intent
-    const paymentIntent = await STRIPE_API_KEY.paymentIntents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: amountInCents,
       currency: "usd",
     });
@@ -571,7 +568,7 @@ export const generateQrCode = async (req, res) => {
     }
 
     // Create a Payment Intent
-    const paymentIntent = await STRIPE_API_KEY.paymentIntents.create({
+    const paymentIntent = await stripe.paymentIntents.create({
       amount: totalAmount * 100, // Amount in cents
       currency: "usd",
       metadata: { eventId, attendeeEmail },

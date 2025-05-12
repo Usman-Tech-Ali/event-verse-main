@@ -20,22 +20,4 @@ spec:
             - containerPort: 5000
           env:
             - name: MONGO_URI
-              value: mongodb://mongodb.event-verse.svc.cluster.local:27017/event-verse-main
-            - name: STRIPE_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: STRIPE_API_KEY
-                  name: backend-secrets
-          resources:
-            limits:
-              cpu: 500m
-              memory: 512Mi
-            requests:
-              cpu: 200m
-              memory: 256Mi
-          readinessProbe:
-            httpGet:
-              path: /health # Adjust if your app has a different health endpoint
-              port: 5000
-            initialDelaySeconds: 10
-            periodSeconds: 5
+              value: "mongodb://mongodb:27017/event-verse"
