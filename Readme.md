@@ -1,5 +1,3 @@
-//write project description
-
 # 🎉 Event-Verse - Event Management System (EMS)
 
 Event-Verse is a full-stack Event Management System designed to simplify the management and participation in events. Built for attendees, organizers, and staff, the platform streamlines event registration, feedback collection, and personalized engagement.
@@ -94,14 +92,14 @@ npm start
 
 ```bash
 cd frontend
-docker build -t your-dockerhub-username/mern-frontend:latest .
+docker build -t your-dockerhub-username/event-verse-frontend:latest .
 ```
 
 2. Build backend image:
 
 ```bash
 cd backend
-docker build -t your-dockerhub-username/mern-backend:latest .
+docker build -t your-dockerhub-username/event-verse-backend:latest .
 ```
 
 ## Kubernetes Deployment
@@ -115,7 +113,7 @@ minikube start
 2. Create namespace:
 
 ```bash
-kubectl create namespace mern-app
+kubectl create namespace event-verse
 ```
 
 3. Create MongoDB secret:
@@ -134,12 +132,14 @@ kubectl apply -f frontend-deployment.yaml
 kubectl apply -f backend-deployment.yaml
 kubectl apply -f frontend-service.yaml
 kubectl apply -f backend-service.yaml
+kubectl apply -f mongodb-deployment.yaml
+kubectl apply -f mongodb-service.yaml
 ```
 
 5. Access the application:
 
 ```bash
-minikube service frontend-service -n mern-app
+minikube service frontend-service -n event-verse
 ```
 
 ## GitHub Actions Setup
@@ -159,19 +159,19 @@ minikube service frontend-service -n mern-app
 1. Check pod status:
 
 ```bash
-kubectl get pods -n mern-app
+kubectl get pods -n event-verse
 ```
 
 2. Check services:
 
 ```bash
-kubectl get services -n mern-app
+kubectl get services -n event-verse
 ```
 
 3. Check deployments:
 
 ```bash
-kubectl get deployments -n mern-app
+kubectl get deployments -n event-verse
 ```
 
 ## Troubleshooting
@@ -179,14 +179,14 @@ kubectl get deployments -n mern-app
 1. View pod logs:
 
 ```bash
-kubectl logs <pod-name> -n mern-app
+kubectl logs <pod-name> -n event-verse
 ```
 
 2. Describe resources:
 
 ```bash
-kubectl describe pod <pod-name> -n mern-app
-kubectl describe service <service-name> -n mern-app
+kubectl describe pod <pod-name> -n event-verse
+kubectl describe service <service-name> -n event-verse
 ```
 
 ## Cleanup
@@ -200,7 +200,7 @@ kubectl delete -f k8s/
 2. Delete the namespace:
 
 ```bash
-kubectl delete namespace mern-app
+kubectl delete namespace event-verse
 ```
 
 3. Stop Minikube:
