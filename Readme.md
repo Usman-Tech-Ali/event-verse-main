@@ -203,7 +203,7 @@ kubectl delete -f k8s/
 kubectl delete namespace event-verse
 ```
 
-3. Stop Minikube:
+3. Stop Minikube():
 
 ```bash
 minikube stop
