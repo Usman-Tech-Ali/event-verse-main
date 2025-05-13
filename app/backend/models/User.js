@@ -20,7 +20,6 @@ const userSchema = new mongoose.Schema(
     experienceLevel: {
       type: String,
       enum: ["Novice", "Intermediate", "Advanced"],
-      // required: true,
       default: "Novice",
     },
     email: {

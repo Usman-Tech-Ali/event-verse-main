@@ -10,12 +10,15 @@ const SetDiscounts = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/events/all-events", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "http://127.0.0.1:5000/api/events/all-events",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch events");
@@ -53,13 +56,20 @@ const SetDiscounts = () => {
   const handleSubmit = async (eventId) => {
     try {
       const event = events.find((event) => event._id === eventId);
-      const response = await fetch(`http://localhost:5000/api/events/discounts/apply`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ eventId: event._id, discountPercentage: event.discount, category: event.category }),
-      });
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/events/discounts/apply`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            eventId: event._id,
+            discountPercentage: event.discount,
+            category: event.category,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to set discount");
@@ -102,17 +112,31 @@ const SetDiscounts = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((event) => (
-            <div key={event._id} className="bg-gray-900 rounded-lg shadow-lg p-6 transform transition-transform duration-300 hover:scale-105">
-              <form onSubmit={(e) => { e.preventDefault(); handleSubmit(event._id); }}>
+            <div
+              key={event._id}
+              className="bg-gray-900 rounded-lg shadow-lg p-6 transform transition-transform duration-300 hover:scale-105"
+            >
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSubmit(event._id);
+                }}
+              >
                 <h3 className="text-2xl font-bold mb-2">{event.name}</h3>
-                <p className="mb-2">{new Date(event.date).toLocaleDateString()}</p>
+                <p className="mb-2">
+                  {new Date(event.date).toLocaleDateString()}
+                </p>
                 <p className="mb-2">{event.location}</p>
                 <div className="mb-4">
-                  <label className="block text-lg mb-2">Discount Percentage:</label>
+                  <label className="block text-lg mb-2">
+                    Discount Percentage:
+                  </label>
                   <input
                     type="number"
                     value={event.discount || 0}
-                    onChange={(e) => handleDiscountChange(event._id, e.target.value)}
+                    onChange={(e) =>
+                      handleDiscountChange(event._id, e.target.value)
+                    }
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     min="0"
                     max="100"
@@ -120,10 +144,14 @@ const SetDiscounts = () => {
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="block text-lg mb-2">Discount Category:</label>
+                  <label className="block text-lg mb-2">
+                    Discount Category:
+                  </label>
                   <select
                     value={event.category || "general"}
-                    onChange={(e) => handleCategoryChange(event._id, e.target.value)}
+                    onChange={(e) =>
+                      handleCategoryChange(event._id, e.target.value)
+                    }
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
                     <option value="general">General</option>

@@ -1,11 +1,20 @@
+# Use official Node.js LTS image
 FROM node:18
 
-WORKDIR /app/backend
+# Set working directory
+WORKDIR /app
 
-COPY app/backend/package*.json ./
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-COPY app/backend/ ./
+# Copy the rest of the application code
+COPY . .
 
+# Expose the backend port
 EXPOSE 5000
-CMD ["node", "server.js"]
+
+# Start the backend server
+CMD ["npm", "start"]

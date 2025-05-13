@@ -18,7 +18,7 @@ import {
   getEventAnalytics,
   generateQrCode,
   downloadAnalytics,
-  applyDiscount
+  applyDiscount,
 } from "../controllers/eventcontroller.js";
 
 const router = express.Router();

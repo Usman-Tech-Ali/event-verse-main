@@ -10,7 +10,9 @@ const Confirmation = () => {
     return (
       <div className="min-h-screen flex items-center justify-center text-white">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">No Sponsorship Details Found</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            No Sponsorship Details Found
+          </h1>
           <button
             onClick={() => navigate("/")}
             className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full"
@@ -34,13 +36,27 @@ const Confirmation = () => {
         <h1 className="text-4xl font-bold mb-4">Sponsorship Submitted</h1>
         <p className="text-xl mb-4">Thank you for your sponsorship!</p>
         <div className="text-left">
-          <p><strong>Event:</strong> {event.name}</p>
-          <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
-          <p><strong>Location:</strong> {event.location}</p>
-          <p><strong>Type:</strong> {event.type}</p>
-          <p><strong>Company Name:</strong> {sponsorshipDetails.companyName}</p>
-          <p><strong>Contact Number:</strong> {sponsorshipDetails.contactNumber}</p>
-          <p><strong>Amount Sponsored:</strong> ${sponsorshipDetails.amount}</p>
+          <p>
+            <strong>Event:</strong> {event.name}
+          </p>
+          <p>
+            <strong>Date:</strong> {new Date(event.date).toLocaleDateString()}
+          </p>
+          <p>
+            <strong>Location:</strong> {event.location}
+          </p>
+          <p>
+            <strong>Type:</strong> {event.type}
+          </p>
+          <p>
+            <strong>Company Name:</strong> {sponsorshipDetails.companyName}
+          </p>
+          <p>
+            <strong>Contact Number:</strong> {sponsorshipDetails.contactNumber}
+          </p>
+          <p>
+            <strong>Amount Sponsored:</strong> ${sponsorshipDetails.amount}
+          </p>
         </div>
         <button
           onClick={() => navigate("/")}

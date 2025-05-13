@@ -33,7 +33,7 @@ import TicketSalesPage from "./components/Organizer/TicketSalesPage";
 import EventAnalytics from "./components/Organizer/EventAnalytics";
 import ViewReports from "./components/Admin/ViewReports";
 import DashboardSponser from "./components/Sponsers/DashboardSponser";
-import Application from "./components/Sponsers/Application"
+import Application from "./components/Sponsers/Application";
 import Confirmation from "./components/Sponsers/ConfirmPage";
 import ViewApplications from "./components/Sponsers/ViewApplications";
 import ManageSponsorApplications from "./components/Organizer/ManageSponserApplications";
@@ -68,7 +68,7 @@ const App = () => {
           <Route path="/manage-events" element={<ManageEvents />} />
           <Route path="/organizer/create-event" element={<EventCreation />} />
           <Route path="/dashboard/admin" element={<DashboardAdmin />} />
-         {/* <Route path="/dashboard/sponsor" element={<DashboardSponsor />} />  */}
+          {/* <Route path="/dashboard/sponsor" element={<DashboardSponsor />} />  */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/feedback" element={<EventFeedback />} />
           <Route path="/all-feedback" element={<AllFeedback />} />
@@ -79,12 +79,13 @@ const App = () => {
           <Route path="/admin/reports" element={<ViewReports />} />
           <Route path="/sponsor/apply" element={<Application />} />
           <Route path="/sponsor/confirmation" element={<Confirmation />} />
-          <Route path="/sponsor/applications"
-        element={<ViewApplications/>}/>
-                <Route path="/manage-sponsor-applications" element={<ManageSponsorApplications />} />
-                <Route path="/admin/discounts" element={<SetDiscounts />} />
+          <Route path="/sponsor/applications" element={<ViewApplications />} />
+          <Route
+            path="/manage-sponsor-applications"
+            element={<ManageSponsorApplications />}
+          />
+          <Route path="/admin/discounts" element={<SetDiscounts />} />
         </Routes>
-       
       </Router>
     </div>
   );

@@ -106,47 +106,46 @@ const Payment = () => {
   const [success, setSuccess] = useState(false);
   const [qrPaymentLink, setQrPaymentLink] = useState(null);
 
-
   const { eventId, tickets, totalAmount, eventName } = location.state || {};
 
+  const handleGenerateQR = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (!user?.email) throw new Error("Please log in to continue.");
 
-const handleGenerateQR = async () => {
-  try {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (!user?.email) throw new Error("Please log in to continue.");
+      const response = await fetch(
+        "http://127.0.0.1:5000/api/events/generate-qr",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            eventId,
+            tickets,
+            attendeeEmail: user.email,
+            totalAmount,
+          }),
+        }
+      );
 
-    const response = await fetch("http://localhost:5000/api/events/generate-qr", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        eventId,
-        tickets,
-        attendeeEmail: user.email,
-        totalAmount
-      }),
-    });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Failed to generate QR payment link");
+      }
 
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || "Failed to generate QR payment link");
+      const { paymentLink } = await response.json();
+      setQrPaymentLink(paymentLink); // Save the link for QR code generation
+    } catch (err) {
+      setError(err.message);
+      console.error("Error generating QR code:", err);
     }
-
-    const { paymentLink } = await response.json();
-    setQrPaymentLink(paymentLink); // Save the link for QR code generation
-  } catch (err) {
-    setError(err.message);
-    console.error("Error generating QR code:", err);
-  }
-};
-
-
+  };
 
   const initiatePayment = async () => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user?.email) throw new Error("Please log in to continue");
 
-      const response = await fetch("http://localhost:5000/api/events/book", {
+      const response = await fetch("http://127.0.0.1:5000/api/events/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -175,7 +174,7 @@ const handleGenerateQR = async () => {
       if (!user?.email) throw new Error("Please log in to download ticket");
 
       const response = await fetch(
-        "http://localhost:5000/api/events/download-ticket",
+        "http://127.0.0.1:5000/api/events/download-ticket",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -212,7 +211,7 @@ const handleGenerateQR = async () => {
         throw new Error("Please log in to complete ticket booking.");
 
       const response = await fetch(
-        "http://localhost:5000/api/tickets/paymentsuccess",
+        "http://127.0.0.1:5000/api/tickets/paymentsuccess",
         {
           method: "POST",
           headers: {
@@ -303,27 +302,29 @@ const handleGenerateQR = async () => {
             ) : (
               <div className="space-y-4">
                 {!paymentIntent ? (
-                  <><button
+                  <>
+                    <button
                       onClick={initiatePayment}
                       className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
                     >
                       <FaCreditCard className="mr-2 h-5 w-5" />
                       Proceed to Payment
-                    </button><button
+                    </button>
+                    <button
                       onClick={handleGenerateQR}
                       className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700 mt-4"
                     >
-                        Generate QR for Payment
-                      </button>
-                     {qrPaymentLink && (
+                      Generate QR for Payment
+                    </button>
+                    {qrPaymentLink && (
                       <div className="flex flex-col items-center mt-4">
-                        <p className="text-white mb-2">Scan the QR code below to make a payment:</p>
+                        <p className="text-white mb-2">
+                          Scan the QR code below to make a payment:
+                        </p>
                         <QRCodeCanvas value={qrPaymentLink} size={200} />
                       </div>
                     )}
-                  
-                    </>
-                    
+                  </>
                 ) : (
                   <Elements stripe={stripePromise}>
                     <PaymentForm

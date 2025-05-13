@@ -3,7 +3,7 @@ import {
   addFeedback,
   getFeedbackByEvent,
   getAllFeedback,
-  deleteFeedback
+  deleteFeedback,
 } from "../controllers/Feedbackcontroller.js";
 
 const router = express.Router();

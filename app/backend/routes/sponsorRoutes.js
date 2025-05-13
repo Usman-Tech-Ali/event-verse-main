@@ -1,5 +1,10 @@
 import express from "express";
-import { submitApplication, viewApplication, viewApplicationsByOrganizer, changeApplicationStatus } from "../controllers/SponsorController.js";
+import {
+  submitApplication,
+  viewApplication,
+  viewApplicationsByOrganizer,
+  changeApplicationStatus,
+} from "../controllers/SponsorController.js";
 
 const router = express.Router();
 

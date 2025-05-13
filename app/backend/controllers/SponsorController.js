@@ -3,7 +3,8 @@ import Event from "../models/Event.js";
 
 // Submit a sponsorship application
 export const submitApplication = async (req, res) => {
-  const { userId, companyName, contactNumber, eventId, amountSponsored } = req.body;
+  const { userId, companyName, contactNumber, eventId, amountSponsored } =
+    req.body;
 
   try {
     const newApplication = new SponserAppli({
@@ -30,7 +31,8 @@ export const viewApplication = async (req, res) => {
     const applications = await SponserAppli.find({ userId }).populate({
       path: "eventId",
       model: Event,
-      select: "name date location type createdBy organizerName isEnded isApproved"
+      select:
+        "name date location type createdBy organizerName isEnded isApproved",
     });
     res.status(200).json(applications);
   } catch (error) {
@@ -47,13 +49,16 @@ export const viewApplicationsByOrganizer = async (req, res) => {
     const events = await Event.find({ createdBy: organizerId });
 
     // Extract event IDs
-    const eventIds = events.map(event => event._id);
+    const eventIds = events.map((event) => event._id);
 
     // Find all sponsorship applications for these events
-    const applications = await SponserAppli.find({ eventId: { $in: eventIds } }).populate({
+    const applications = await SponserAppli.find({
+      eventId: { $in: eventIds },
+    }).populate({
       path: "eventId",
       model: Event,
-      select: "name date location type createdBy organizerName isEnded isApproved"
+      select:
+        "name date location type createdBy organizerName isEnded isApproved",
     });
 
     res.status(200).json(applications);
@@ -83,6 +88,8 @@ export const changeApplicationStatus = async (req, res) => {
 
     res.status(200).json(updatedApplication);
   } catch (error) {
-    res.status(500).json({ message: "Failed to change application status", error });
+    res
+      .status(500)
+      .json({ message: "Failed to change application status", error });
   }
 };

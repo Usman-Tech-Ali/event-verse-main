@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const feedbackSchema = new mongoose.Schema({
   eventId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Event', // Reference to the Event schema
+    ref: "Event", // Reference to the Event schema
     required: true,
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Reference to the User schema
+    ref: "User", // Reference to the User schema
     required: true,
   },
   rating: {
@@ -29,6 +29,6 @@ const feedbackSchema = new mongoose.Schema({
   },
 });
 
-const Feedback = mongoose.model('Feedback', feedbackSchema);
+const Feedback = mongoose.model("Feedback", feedbackSchema);
 
 export default Feedback;

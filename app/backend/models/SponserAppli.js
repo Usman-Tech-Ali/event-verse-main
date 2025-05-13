@@ -32,7 +32,7 @@ const SponserAppliSchema = new mongoose.Schema({
     type: String,
     enum: ["pending", "approved", "rejected"],
     default: "pending",
-  }
+  },
 });
 
 const SponserAppli = mongoose.model("SponserAppli", SponserAppliSchema);

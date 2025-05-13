@@ -10,12 +10,15 @@ const ManageSponsorApplications = () => {
     const fetchApplications = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
-        const response = await fetch(`http://localhost:5000/api/sponsor/organizer/${user.id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `http://127.0.0.1:5000/api/sponsor/organizer/${user.id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch applications");
@@ -36,13 +39,16 @@ const ManageSponsorApplications = () => {
 
   const handleStatusChange = async (applicationId, status) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/sponsor/application/${applicationId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status }),
-      });
+      const response = await fetch(
+        `http://127.0.0.1:5000/api/sponsor/application/${applicationId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to update application status");
@@ -51,7 +57,9 @@ const ManageSponsorApplications = () => {
       const updatedApplication = await response.json();
       setApplications((prev) =>
         prev.map((app) =>
-          app._id === applicationId ? { ...app, status: updatedApplication.status } : app
+          app._id === applicationId
+            ? { ...app, status: updatedApplication.status }
+            : app
         )
       );
     } catch (err) {
@@ -116,7 +124,8 @@ const ManageSponsorApplications = () => {
                     <strong>Contact Number:</strong> {application.contactNumber}
                   </p>
                   <p>
-                    <strong>Amount Sponsored:</strong> ${application.amountSponsored}
+                    <strong>Amount Sponsored:</strong> $
+                    {application.amountSponsored}
                   </p>
                   <p className="flex items-center">
                     <strong>Status:</strong>
@@ -130,13 +139,17 @@ const ManageSponsorApplications = () => {
                   </p>
                   <div className="flex justify-between mt-4">
                     <button
-                      onClick={() => handleStatusChange(application._id, "approved")}
+                      onClick={() =>
+                        handleStatusChange(application._id, "approved")
+                      }
                       className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md"
                     >
                       Approve
                     </button>
                     <button
-                      onClick={() => handleStatusChange(application._id, "rejected")}
+                      onClick={() =>
+                        handleStatusChange(application._id, "rejected")
+                      }
                       className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-md"
                     >
                       Reject

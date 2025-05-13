@@ -175,9 +175,7 @@ const SponserDashboard = () => {
           {/* Card 1: Apply for Sponsorship */}
           <div className="bg-gray-100 text-black p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-2xl font-bold mb-4">Apply for Sponsorship</h3>
-            <p>
-              Submit your sponsorship application for upcoming events.
-            </p>
+            <p>Submit your sponsorship application for upcoming events.</p>
             <Link
               to="/sponsor/apply"
               className="block mt-4 text-center bg-purple-600 text-white py-2 rounded-full hover:bg-purple-700 transition"
@@ -189,9 +187,7 @@ const SponserDashboard = () => {
           {/* Card 2: View My Applications */}
           <div className="bg-gray-100 text-black p-6 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
             <h3 className="text-2xl font-bold mb-4">View My Applications</h3>
-            <p>
-              Track the status of your sponsorship applications.
-            </p>
+            <p>Track the status of your sponsorship applications.</p>
             <Link
               to="/sponsor/applications"
               className="block mt-4 text-center bg-purple-600 text-white py-2 rounded-full hover:bg-purple-700 transition"
